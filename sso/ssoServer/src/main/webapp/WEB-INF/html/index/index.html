@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="inc/meta::inc_meta_header"></head>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Music</title>
+  <!-- <script src="resources/js/plugins/vue/vue.js"></script> -->
+</head>
+<body>
+  <div id="app">
+    {{ message }}
+  </div>
+
+  <a th:text="用户详情" th:href="@{/user/user-index}" />
+
+  <!-- 通过requirejs引入 -->
+  <script th:src="@{/resources/js/plugins/require.js}" th:data-main="@{/resources/js/apps/index/index.js}"></script>
+</body>
+
+</html>

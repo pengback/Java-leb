@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="inc/meta::inc_meta_header"></head>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>登录</title>
+    <link rel="stylesheet" th:href="@{/resources/js/plugins/bootstrap-4.0.0-dist/css/bootstrap.css}"></link>
+    <link rel="stylesheet" th:href="@{/resources/css/apps/common/common.css}"></link>
+    <link rel="stylesheet" th:href="@{/resources/css/apps/index/login.css}"></link>
+</head>
+
+<body>
+    <div id="loginBox" class="login_box">
+
+        <form class="login_form" method="post" enctype="multipart/form-data">
+            <div class="login_form_label">
+                <p class="login_message">登录名</p>
+                <input type="text" class="login_text" name="loginName" v-model="loginName" placeholder="用户名或邮件地址" />
+            </div>
+            <div class="login_form_label">
+                <p class="login_message">密码</p>
+                <input type="password" class="login_text" name="passwd" v-model="passwd" placeholder="请输入密码" />
+            </div>
+            <div>
+                <input type="hidden" id="redirectUrl" name="redirectUrl" th:value="${redirectUrl}" />
+            </div>
+            <div class="login_form_label">
+                <div class="button_blue login_form_botton login_button_login" v-on:click="doLogin">登录</div>
+                <button class="button_orange login_form_botton login_button_regist" v-on:click="regist">注册</button>
+            </div>
+        </form>
+
+    </div>
+    <!-- 通过requirejs引入 -->
+    <script th:src="@{/resources/js/plugins/require.js}" th:data-main="@{/resources/js/apps/index/login.js}"></script>
+</body>
+
+</html>

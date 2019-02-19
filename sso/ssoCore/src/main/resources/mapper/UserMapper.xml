@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace中配置的路径与你所创建的UserMapper全类名一致  -->
+<mapper namespace="com.ali.leb.sso.core.mapper.UserMapper">
+
+    <sql id="userColumns">
+        ${alias}.id as id, ${alias}.user_name as userName, ${alias}.user_passwd as userPasswd, ${alias}.age as age
+    </sql>
+
+    <!-- resultType指定你查询语句所查询对象类型  #{0}和#{1} 表示你传入的两个参数username和upassword -->
+    <select id="doLogin" resultType="com.ali.leb.sso.core.entity.User">
+        select
+        <include refid="userColumns">
+            <property name="alias" value="a"></property>
+        </include>
+        from t_user a where a.user_name = #{0} and a.user_passwd = #{1}
+    </select>
+
+    <select id="getUserInfoByName" resultType="User">
+        select
+        <include refid="userColumns">
+            <property name="alias" value="a"></property>
+        </include>
+        from t_user a
+        where a.user_name = #{0}
+    </select>
+
+    <select id="getUserInfoByLoginName" resultType="User">
+        select
+        <include refid="userColumns">
+            <property name="alias" value="a"/>
+        </include>
+        from t_user a
+        where a.login_name = #{0}
+    </select>
+
+</mapper>

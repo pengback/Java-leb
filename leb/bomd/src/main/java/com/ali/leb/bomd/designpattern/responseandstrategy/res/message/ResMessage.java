@@ -10,8 +10,8 @@ import lombok.Data;
  **/
 @Data
 public class ResMessage extends BaseMessage {
-    String messageCode;
-    String messageState;
+    String messageCode;         // 10001
+    String messageState;        // 密码不正确
     String messageBody;
 
     @Override

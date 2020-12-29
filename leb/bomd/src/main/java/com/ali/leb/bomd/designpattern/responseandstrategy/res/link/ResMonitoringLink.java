@@ -29,6 +29,7 @@ public class ResMonitoringLink extends MonitoringLink {
             // 进行逻辑匹配, 判断 入参的message消息
             if (this.getMatcher().doMatch(node.getEvent(), message)) {
                 outMessage = node.service(message);
+                // todo 打印日志. 发送MQ消息 ....
                 break;
             }
         }

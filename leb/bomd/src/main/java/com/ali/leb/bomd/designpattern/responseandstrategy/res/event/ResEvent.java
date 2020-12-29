@@ -11,8 +11,10 @@ import lombok.Data;
 @Data
 public class ResEvent implements BaseEvent {
 
-    private String eventCode;
-    private String eventDesc;
+    private String eventCode;   // 10001
+    private String eventDesc;   // 银行卡密码不正确
+
+    private int status;
 
     public ResEvent(ResErr err) {
         this.eventCode = err.getCode();

@@ -1,0 +1,34 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true               #表明gateway开启服务注册和发现的功能，并且spring cloud gateway自动根据服务发现为每一个服务创建了一个router，这个router将以服务名开头的请求路径转发到对应的服务。
+          lowerCaseServiceId: true    #是将请求路径上的服务名配置为小写（因为服务注册的时候，向注册中心注册时将服务名转成大写的了），比如以/service-hi/*的请求路径被路由转发到服务名为service-hi的服务上。
+      routes:
+        - id: nacos-server
+          uri: lb://nacos-server-demo  # lb://开头（lb代表从注册中心获取服务）LoadBalanced
+          predicates:
+            - Path=/nacos-server/**
+          filters:
+            - StripPrefix=1
+            - name: Retry
+              args:
+                retries: 3
+                statuses: BAD_GATEWAY
+                # retries：重试次数，默认值是 3 次
+                # statuses：HTTP 的状态返回码，取值请参考：org.springframework.http.HttpStatus
+                # methods：指定哪些方法的请求需要进行重试逻辑，默认值是 GET 方法，取值参考：org.springframework.http.HttpMethod
+                # series：一些列的状态码配置，取值参考：org.springframework.http.HttpStatus.Series。符合的某段状态码才会进行重试逻辑，默认值是 SERVER_ERROR，值是 5，也就是 5XX(5 开头的状态码)，共有5 个值。
+            - name: Hystrix
+              args:
+                name: fallbackcmd
+                fallbackUri: forward:/fallback
+        - id: nacos-demo
+          uri: http://127.0.0.1:8091,http://1217.0.0.1:8092
+          predicates:
+            - Path=/nacos-demo/test1/**,/nacos-demo/test2/**
+        - id: nacos-test
+          uri: lb://nacos-test
+          predicates:
+            - Path=/nacos-test/**

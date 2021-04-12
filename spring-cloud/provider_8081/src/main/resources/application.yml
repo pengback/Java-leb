@@ -1,0 +1,21 @@
+server:
+  port: 8081
+  name: provider8081
+
+spring:
+  application:
+    name: provider8081
+
+eureka:
+  server:
+    port: 9001
+  instance:
+    hostname: local.eureka.com
+  client:
+    #不向Eureka注册自己
+    register-with-eureka: true
+    #不检查其他的EurekaServer节点
+    fetch-registry: false
+    service-url:
+      #设置eureka服务器所在的地址，查询服务和注册服务程序都注册到这个地址(服务暴露的地址)
+      defaultZone: http://${eureka.instance.hostname}:${eureka.server.port}/eureka/

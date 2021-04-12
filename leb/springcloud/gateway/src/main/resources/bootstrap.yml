@@ -1,0 +1,20 @@
+server:
+  port: 9527
+
+# 应用名称
+spring:
+  profiles:
+    active: dev
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      config:
+        file-extension: yml
+
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
+
+
+

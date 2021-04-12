@@ -1,0 +1,35 @@
+server:
+  port: 8091
+#  servlet:
+#    context-path: /nacos-server
+spring:
+  profiles:
+    active: dev
+
+---
+spring:
+  application:
+    name: nacos-server-demo
+  profiles: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://127.0.0.1:8848
+      config:
+        file-extension: yml
+        server-addr: http://127.0.0.1:8848
+        shared-configs: application-${spring.profiles.active}.yml
+
+---
+spring:
+  application:
+    name: nacos-server-demo
+  profiles: prod
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://127.0.0.1:8848
+      config:
+        file-extension: yml
+        server-addr: http://127.0.0.1:8848
+        shared-configs: application-${spring.profiles.active}.yml

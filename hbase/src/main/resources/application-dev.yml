@@ -1,0 +1,6 @@
+# 项目HBase配置
+ze:
+  #  HBase基础配置
+  hbase:
+  zk_url: ze.hbase.zk1,ze.hbase.zk2,ze.hbase.zk3
+  zk_port: 2181

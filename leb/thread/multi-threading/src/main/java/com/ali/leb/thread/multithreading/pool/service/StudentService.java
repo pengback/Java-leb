@@ -8,4 +8,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @Date: 2021/4/12 下午11:34
  **/
 public interface StudentService extends IService<Student> {
+
+    /**
+     * 测试保存
+     *
+     * @return
+     */
+    Student saveStudent();
+
 }

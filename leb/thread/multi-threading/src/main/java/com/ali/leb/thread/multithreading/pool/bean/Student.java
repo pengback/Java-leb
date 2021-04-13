@@ -1,7 +1,9 @@
 package com.ali.leb.thread.multithreading.pool.bean;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,11 +15,14 @@ import java.util.Date;
  **/
 
 @Data
+@Builder
 @TableName("student")
 public class Student implements Serializable {
 
-    @TableField("id")
-    private long id;
+    private static final long serialVersionUID = 1L;
+
+    @TableId
+    private String id;
 
     @TableField("name")
     private String name;

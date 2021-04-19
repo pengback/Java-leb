@@ -16,4 +16,11 @@ public interface StudentService extends IService<Student> {
      */
     Student saveStudent();
 
+    /***
+     * 根据name创建
+     * @param name
+     * @return
+     */
+    Student saveByName(String name);
+
 }

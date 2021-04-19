@@ -31,4 +31,11 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
         this.save(stu);
         return stu;
     }
+
+    @Override
+    public Student saveByName(String name) {
+        Student stu = Student.builder().name(name).createTime(Calendar.getInstance().getTime()).build();
+        this.save(stu);
+        return stu;
+    }
 }
